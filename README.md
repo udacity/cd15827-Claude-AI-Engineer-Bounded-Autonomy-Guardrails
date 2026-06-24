@@ -1,4 +1,4 @@
-# AI Engineer — Bounded Autonomy & Guardrails
+# Claude AI Engineer — Bounded Autonomy & Guardrails
 
 This repo is the source of truth for the exercises in this course. Each exercise is a
 self-contained Python project that builds, step by step, toward a complete reference
