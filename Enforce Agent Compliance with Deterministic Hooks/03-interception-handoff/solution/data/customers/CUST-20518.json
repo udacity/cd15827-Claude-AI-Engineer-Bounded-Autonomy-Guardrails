@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-20518",
+  "name": "Maria Gonzalez",
+  "account_number": "ACCT-5582031",
+  "country": "US",
+  "kyc_status": "verified",
+  "account_balance": "1234.56 USD",
+  "verified_at": 1721347200,
+  "status": 1,
+  "risk_notes": "Routine retail account, low risk"
+}

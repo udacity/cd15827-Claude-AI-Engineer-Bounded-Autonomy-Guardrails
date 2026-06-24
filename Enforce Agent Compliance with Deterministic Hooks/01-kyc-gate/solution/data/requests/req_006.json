@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-006",
+  "customer_id": "CUST-55290",
+  "transaction_type": "wire_transfer",
+  "amount": 10000.0,
+  "origin_account": "ACCT-8815364",
+  "destination_account": "EXT-33076",
+  "destination_country": "DE",
+  "description": "Wire transfer at the reporting threshold to a domestic German account."
+}

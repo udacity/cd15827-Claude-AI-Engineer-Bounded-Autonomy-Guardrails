@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-004",
+  "customer_id": "CUST-61837",
+  "transaction_type": "wire_transfer",
+  "amount": 6000.0,
+  "origin_account": "ACCT-9926475",
+  "destination_account": "EXT-55198",
+  "destination_country": "FR",
+  "description": "Wire transfer to a personal savings account at another French institution."
+}

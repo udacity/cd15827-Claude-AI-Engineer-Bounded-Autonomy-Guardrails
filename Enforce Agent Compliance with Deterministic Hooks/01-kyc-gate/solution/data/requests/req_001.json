@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-001",
+  "customer_id": "CUST-10293",
+  "transaction_type": "wire_transfer",
+  "amount": 4500.0,
+  "origin_account": "ACCT-4471920",
+  "destination_account": "EXT-88321",
+  "destination_country": "US",
+  "description": "Domestic wire transfer to settle a vendor invoice for office equipment."
+}

@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-80415",
+  "name": "Fatima Al-Rashid",
+  "account_number": "ACCT-2148697",
+  "country": "US",
+  "kyc_status": "not_started",
+  "account_balance": "$15,300.00",
+  "verified_at": null,
+  "status": 3,
+  "risk_notes": "Account frozen pending identity verification"
+}

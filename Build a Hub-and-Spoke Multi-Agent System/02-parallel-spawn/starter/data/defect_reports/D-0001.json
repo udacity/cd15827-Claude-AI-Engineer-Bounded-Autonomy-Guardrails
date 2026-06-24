@@ -1,0 +1,8 @@
+{
+  "defect_id": "D-0001",
+  "description": "Saw a shiny blob between pins 3 and 4 on the regulator — looks like a solder bridge. Board failed continuity check right after reflow. Third one this hour off the same nozzle.",
+  "component_ids": ["IC-REG-7805"],
+  "line": "L2",
+  "shift": "morning",
+  "reported_at": "2026-05-14T08:42:00Z"
+}

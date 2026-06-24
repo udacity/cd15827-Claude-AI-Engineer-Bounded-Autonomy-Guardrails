@@ -1,0 +1,8 @@
+{
+  "defect_id": "D-0003",
+  "description": "Crystal case has a visible hairline crack across the top, you can see it under the loupe. Pretty sure it got knocked during the manual insertion step — the tray was overstacked again.",
+  "component_ids": ["XTAL-16MHZ"],
+  "line": "L3",
+  "shift": "night",
+  "reported_at": "2026-03-08T02:30:00Z"
+}

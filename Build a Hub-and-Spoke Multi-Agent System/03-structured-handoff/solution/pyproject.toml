@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "manufacturing-quality-control-system"
+version = "0.1.0"
+description = "Hub-and-spoke multi-agent quality control system for electronics defect triage"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.40",
+  "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "pytest-asyncio>=0.23",
+  "mypy>=1.10",
+  "ruff>=0.5",
+]
+
+[project.scripts]
+manufacturing-qc = "manufacturing_qc.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["manufacturing_qc*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+  "live: integration tests requiring ANTHROPIC_API_KEY and network access",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]

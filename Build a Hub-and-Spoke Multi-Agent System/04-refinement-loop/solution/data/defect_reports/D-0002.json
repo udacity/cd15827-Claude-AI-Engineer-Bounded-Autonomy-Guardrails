@@ -1,0 +1,8 @@
+{
+  "defect_id": "D-0002",
+  "description": "The red LED is sitting at maybe a 20 degree angle, one pad barely tacked. Cap next to it shifted too, almost tombstoned. Feeder might be off — I noticed the reel was loaded a little loose at changeover.",
+  "component_ids": ["LED-RED-T0805", "CAP-10UF-A"],
+  "line": "L1",
+  "shift": "swing",
+  "reported_at": "2026-04-22T17:15:00Z"
+}

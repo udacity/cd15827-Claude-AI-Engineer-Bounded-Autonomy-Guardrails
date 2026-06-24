@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-61837",
+  "name": "Chloé Lefebvre",
+  "account_number": "ACCT-9926475",
+  "country": "FR",
+  "kyc_status": "pending",
+  "account_balance": "EUR 2.150,00",
+  "verified_at": null,
+  "status": 1,
+  "risk_notes": "KYC documentation under review"
+}

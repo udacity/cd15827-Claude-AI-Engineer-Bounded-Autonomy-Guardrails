@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-002",
+  "customer_id": "CUST-20518",
+  "transaction_type": "wire_transfer",
+  "amount": 15000.0,
+  "origin_account": "ACCT-5582031",
+  "destination_account": "EXT-77410",
+  "destination_country": "US",
+  "description": "Wire transfer for a down payment on a residential property purchase."
+}

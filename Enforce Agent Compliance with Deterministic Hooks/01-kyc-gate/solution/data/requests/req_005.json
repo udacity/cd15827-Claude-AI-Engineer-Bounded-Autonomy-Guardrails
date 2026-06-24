@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-005",
+  "customer_id": "CUST-80415",
+  "transaction_type": "account_adjustment",
+  "amount": 2000.0,
+  "origin_account": "ACCT-2148697",
+  "destination_account": "EXT-44087",
+  "destination_country": "US",
+  "description": "Account adjustment to correct a posting error on a recent deposit."
+}

@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-10293",
+  "name": "James Whitfield",
+  "account_number": "ACCT-4471920",
+  "country": "US",
+  "kyc_status": "verified",
+  "account_balance": "$12,450.00",
+  "verified_at": 1715212800,
+  "status": 1,
+  "risk_notes": "No adverse history"
+}

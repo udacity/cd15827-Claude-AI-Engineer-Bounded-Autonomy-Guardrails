@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-72904",
+  "name": "Daniel Kim",
+  "account_number": "ACCT-1037586",
+  "country": "US",
+  "kyc_status": "pending",
+  "account_balance": "$780.25",
+  "verified_at": null,
+  "status": 2,
+  "risk_notes": "Dormant since 2023"
+}

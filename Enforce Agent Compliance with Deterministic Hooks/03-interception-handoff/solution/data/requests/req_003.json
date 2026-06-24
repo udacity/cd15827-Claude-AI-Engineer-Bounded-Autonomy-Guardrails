@@ -1,0 +1,10 @@
+{
+  "request_id": "REQ-003",
+  "customer_id": "CUST-33741",
+  "transaction_type": "wire_transfer",
+  "amount": 25000.0,
+  "origin_account": "ACCT-6693142",
+  "destination_account": "EXT-66205",
+  "destination_country": "GB",
+  "description": "Cross-border wire transfer to a supplier account in the United Kingdom."
+}

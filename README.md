@@ -1,55 +1,73 @@
-# Purpose of This Repo
+# AI Engineer — Bounded Autonomy & Guardrails
 
-This repo is the source of truth for all exercises in this course.
+This repo is the source of truth for the exercises in this course. Each exercise is a
+self-contained Python project that builds, step by step, toward a complete reference
+implementation. Every step ships a `starter/` (with `# TODO:` markers) and a matching
+`solution/`, and is verified by a scoped `pytest` suite.
 
-> IMPORTANT!  Please remove these instructions before sharing this repo with learners.
+The two exercise projects show two complementary ways to keep an autonomous agent inside
+its lane: **structural** boundaries between cooperating agents, and **deterministic** code
+that enforces compliance regardless of the prompt.
 
 ## Folder Structure
 
-This repo contains one folder for each module and each module folder contains subdirectories for exercises:
+The repo contains one folder per exercise project. Each project folder contains numbered
+build steps, and each step contains a `starter/` and a `solution/`:
 
 ```bash
-module-#-name/
-├── exercise-name-starter/
-│   └── INSTRUCTIONS.md
-└── solution/
-    └── .gitkeep
+Exercise Project Name/
+├── 01-step-name/
+│   ├── starter/      # code with # TODO: markers + a step README.md
+│   └── solution/     # completed reference implementation
+├── 02-step-name/
+│   ├── starter/
+│   └── solution/
+└── ...
 ```
 
-- `exercise-name-starter/` - Contains the starter files and instructions for the exercise (INSTRUCTIONS.md template provided)
-- `solution/` - Contains the solution files for the exercise.
+Each `starter/` and `solution/` is an installable Python package (`pyproject.toml`) with its
+own `data/`, source package, `tests/`, and a `README.md` describing what to build, where the
+TODOs are, how to set up, and how to verify.
 
-> **Note:** The `.gitkeep` file in the solution folder preserves the directory structure in the repository when the folder is empty. It should be removed when one or more solution files have been added to this folder.
+> The step numbers (`01-`, `02-`, …) denote build order *within a single project* — each step
+> picks up where the previous one left off. They are not a fixed course ordering.
 
-Eight module folders have been provided as a template; However, you may need to add more or possibly use less than eight depending on what is needed. If you require an additional module folder, you can make a copy of an existing folder and paste it into the root directory.
+## Exercises
 
-As you build the exercises, the module and exercise folder names should be changed to reflect the content e.g.,
+### [Build a Hub-and-Spoke Multi-Agent System](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/)
 
-- python-basics/simple-calculator-starter
-- object-oriented/classes-vs-instances-starter
-- web-development/simple-api-starter
-- error-handling/try-catch-practice-starter
-- ai-agents/fact-checker-agent-starter
+A manufacturing QC pipeline (`manufacturing_qc`) where a coordinator fans work out to four
+scoped subagents and refines the result. Built over four steps:
 
-> ⚠️ **DO NOT NUMBER the exercises!**
-> Our modular content may be used in more than one program where the order and number of exercises may differ from the order and number in the primary build.
+1. **[01-scoped-subagents](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/01-scoped-subagents/)** — Define the coordinator and four scoped subagents (system prompts, allowed tools, and the scope-coverage map).
+2. **[02-parallel-spawn](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/02-parallel-spawn/)** — Spawn the independent subagents concurrently with `asyncio.gather` and per-subagent scoped context, with partial-failure handling.
+3. **[03-structured-handoff](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/03-structured-handoff/)** — Pass validated Pydantic payloads across agent boundaries, including an evidence-must-reference-known-fields model validator.
+4. **[04-refinement-loop](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/04-refinement-loop/)** — Add a bounded iterative refinement loop that re-investigates when the report agent flags a coverage gap.
 
-## Resources for Building Exercises
+### [Enforce Agent Compliance with Deterministic Hooks](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/)
 
-The [Exercise Creation Resources](Exercise%20Creation%20Resources/) folder contains essential guidelines and standards for creating high-quality, accessible, and engaging exercises. These resources ensure consistency and help you follow best practices when developing course content.
+A simulated banking transaction agent (`transaction_agent`) whose compliance guarantees live in
+a hook engine — in code, not in the prompt. Built over three steps:
 
-### [Exercise Guidance.md](Exercise%20Creation%20Resources/Exercise%20Guidance.md)
+1. **[01-kyc-gate](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/01-kyc-gate/)** — A `PreToolUse` hook that blocks every money-movement tool until KYC has succeeded for that customer; the denied tool is proven to never execute.
+2. **[02-normalization](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/02-normalization/)** — A `PostToolUse` hook that canonicalizes messy tool output (locale-aware currency → `Decimal`, epoch → ISO-8601 UTC, status codes → labels) before the model reads it.
+3. **[03-interception-handoff](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/03-interception-handoff/)** — Intercept and redirect risky transfers to a compliance queue, produce a self-contained handoff summary, and run a harness proving deterministic enforcement beats even a maximal prompt.
 
-Comprehensive guide covering exercise design principles, instruction writing, starter and solution code best practices, and requirements for solution videos and text. This is your primary resource for understanding what makes an effective exercise.
+## Working an Exercise
 
-### [Accessibility Standards.md](Exercise%20Creation%20Resources/Accessibility%20Standards.md)
+Each step's `starter/` and `solution/` is installed and tested the same way. From inside a step's
+`starter/` or `solution/` directory:
 
-Details the WCAG 2.1 AA accessibility standards that all content must meet, including guidelines for headings, alt text, hyperlinks, color contrast, and avoiding images of text. Ensures exercises are accessible to all learners regardless of their abilities or use of assistive technology.
+```bash
+python3 -m venv .venv
+.venv/bin/pip install -e ".[dev]"
+.venv/bin/pytest
+```
 
-### [Real-World Content Guidelines.md](Exercise%20Creation%20Resources/Real-World%20Content%20Guidelines.md)
+See the `README.md` inside each step for the exact TODO locations and the specific test file to run.
+The projects use the Anthropic SDK for the live agent runners; the test suites are scoped so each
+step can be verified on its own.
 
-Guidelines for using real-world examples, company logos, trademarks, and references to people and organizations in exercises. Covers when it's appropriate to use actual brands versus creating fictitious examples and how to avoid legal and ethical issues.
+## License
 
-### [Third Party Images and Datasets.md](Exercise%20Creation%20Resources/Third%20Party%20Images%20and%20Datasets.md)
-
-Requirements for using third-party content including licensing requirements (Creative Commons, public domain), attribution standards, and approved sources for images, coding libraries, and datasets. Lists acceptable and unacceptable license types for commercial educational use.
+See [LICENSE.md](LICENSE.md).

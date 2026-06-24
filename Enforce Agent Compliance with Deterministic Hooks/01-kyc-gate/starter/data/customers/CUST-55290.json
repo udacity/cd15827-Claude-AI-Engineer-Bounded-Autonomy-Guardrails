@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-55290",
+  "name": "Hans Müller",
+  "account_number": "ACCT-8815364",
+  "country": "DE",
+  "kyc_status": "verified",
+  "account_balance": "EUR 8.500,75",
+  "verified_at": 1733011200,
+  "status": 1,
+  "risk_notes": "PEP review pending"
+}

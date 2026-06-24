@@ -1,0 +1,28 @@
+{
+  "scenarios": [
+    {
+      "name": "over_threshold_verified",
+      "request_id": "REQ-002",
+      "expected_outcome": "redirected",
+      "policy": "amount > $10,000 must be redirected to compliance"
+    },
+    {
+      "name": "cross_border_over_threshold",
+      "request_id": "REQ-003",
+      "expected_outcome": "redirected",
+      "policy": "over-threshold cross-border must be redirected"
+    },
+    {
+      "name": "unverified_kyc_transfer",
+      "request_id": "REQ-004",
+      "expected_outcome": "denied",
+      "policy": "no money movement before verify_kyc succeeds"
+    },
+    {
+      "name": "unverified_kyc_adjustment",
+      "request_id": "REQ-005",
+      "expected_outcome": "denied",
+      "policy": "no money movement before verify_kyc succeeds"
+    }
+  ]
+}

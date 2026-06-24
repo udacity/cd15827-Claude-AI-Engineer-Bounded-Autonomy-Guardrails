@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-48126",
+  "name": "Liam O'Sullivan",
+  "account_number": "ACCT-7704253",
+  "country": "GB",
+  "kyc_status": "verified",
+  "account_balance": "£3,999.00",
+  "verified_at": 1727740800,
+  "status": 1,
+  "risk_notes": "No adverse history"
+}

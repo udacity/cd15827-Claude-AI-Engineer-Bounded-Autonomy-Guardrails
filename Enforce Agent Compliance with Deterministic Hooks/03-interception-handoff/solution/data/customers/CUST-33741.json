@@ -1,0 +1,11 @@
+{
+  "customer_id": "CUST-33741",
+  "name": "Aisha Okafor",
+  "account_number": "ACCT-6693142",
+  "country": "US",
+  "kyc_status": "verified",
+  "account_balance": "45200.00 USD",
+  "verified_at": 1709251200,
+  "status": 1,
+  "risk_notes": "No adverse history"
+}

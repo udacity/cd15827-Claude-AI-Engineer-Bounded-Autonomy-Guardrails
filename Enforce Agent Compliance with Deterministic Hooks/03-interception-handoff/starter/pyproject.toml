@@ -1,0 +1,44 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "financial-transaction-processing-agent"
+version = "0.2.0"
+description = "Compliance enforcement layer (PreToolUse/PostToolUse hooks) around an Anthropic-SDK banking agent"
+requires-python = ">=3.11"
+dependencies = [
+  "anthropic>=0.40",
+  "pydantic>=2.7",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=8",
+  "mypy>=1.10",
+  "ruff>=0.5",
+]
+
+[project.scripts]
+transaction-agent = "transaction_agent.__main__:main"
+
+[tool.setuptools.packages.find]
+include = ["transaction_agent*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+  "live: integration tests requiring ANTHROPIC_API_KEY and network access",
+]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+disallow_untyped_defs = true
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "B", "UP", "RUF"]
