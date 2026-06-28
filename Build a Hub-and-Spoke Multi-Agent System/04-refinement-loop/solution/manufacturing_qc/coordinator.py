@@ -8,7 +8,7 @@ other — every handoff is mediated here. The flow:
     3. Hand the hypothesis to report; if it flags a coverage_gap, re-invoke
        root_cause with a refinement query (bounded by `max_refinements`).
 
-US-03 tightens the handoff contracts and US-04 implements the refinement loop.
+Later steps tighten the handoff contracts and implement the refinement loop.
 """
 from __future__ import annotations
 

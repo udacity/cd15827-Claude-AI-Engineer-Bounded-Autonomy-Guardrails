@@ -7,7 +7,7 @@ other; every handoff is mediated here. The flow at this stage:
     2. Hand the typed outputs to root_cause sequentially with Pydantic-validated payloads.
     3. Hand the hypothesis to report.
 
-US-03 tightens the handoff contracts. The iterative refinement loop is added in US-04.
+Later steps tighten the handoff contracts. The iterative refinement loop is added afterward.
 """
 from __future__ import annotations
 
@@ -127,7 +127,7 @@ def build_root_cause_payload(
 ) -> dict[str, object]:
     """Compose the structured payload handed to the root-cause subagent.
 
-    At this stage the inputs are forwarded as-is; US-03 will tighten the contract by
+    At this stage the inputs are forwarded as-is; a later step tightens the contract by
     validating each input against its Pydantic schema before the call.
     """
     return {

@@ -1,4 +1,4 @@
-"""US-03 — Interception hook: block over-threshold transfers + structured handoff."""
+"""Interception hook: block over-threshold transfers + structured handoff."""
 from __future__ import annotations
 
 from decimal import Decimal
@@ -44,7 +44,7 @@ def _decide(hook: Any, tool_name: str, tool_input: dict[str, Any]) -> Any:
     return hook(ToolCall(name=tool_name, input=tool_input), SessionState())
 
 
-# --- AC-03-03: cheap deterministic risk scorer ---
+# --- cheap deterministic risk scorer ---
 
 
 def test_score_risk_flags_over_threshold_cross_border() -> None:
@@ -65,7 +65,7 @@ def test_score_risk_flags_clean_transfer() -> None:
     assert flags == []
 
 
-# --- AC-03-02: HandoffSummary shape ---
+# --- HandoffSummary shape ---
 
 
 def test_handoff_summary_has_all_fields() -> None:
@@ -81,7 +81,7 @@ def test_handoff_summary_has_all_fields() -> None:
     assert handoff.recommended_action  # non-empty
 
 
-# --- AC-03-05: handoff is self-contained (built from tool input + record alone) ---
+# --- handoff is self-contained (built from tool input + record alone) ---
 
 
 def test_handoff_self_contained_from_inputs_only() -> None:
@@ -95,7 +95,7 @@ def test_handoff_self_contained_from_inputs_only() -> None:
     assert "10000" in handoff.reason_for_escalation  # cites the threshold it breached
 
 
-# --- AC-03-01 + AC-03-06: the PreToolUse hook redirects / allows by threshold ---
+# --- the PreToolUse hook redirects / allows by threshold ---
 
 
 def test_hook_redirects_over_threshold() -> None:
@@ -127,7 +127,7 @@ def test_hook_ignores_non_transfer_tools() -> None:
     assert _decide(hook, "get_customer", {"customer_id": "CUST-1"}).is_allow
 
 
-# --- AC-03-04: redirected transfer is not executed, is enqueued, returns business error ---
+# --- redirected transfer is not executed, is enqueued, returns business error ---
 
 
 class SpyTool:

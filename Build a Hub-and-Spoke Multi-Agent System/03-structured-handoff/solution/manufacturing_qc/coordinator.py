@@ -7,7 +7,7 @@ other; every handoff is mediated here. The flow at this stage:
     2. Hand the typed outputs to root_cause sequentially with Pydantic-validated payloads.
     3. Hand the hypothesis to report.
 
-US-03 tightens the handoff contracts. The iterative refinement loop is added in US-04.
+Later steps tighten the handoff contracts. The iterative refinement loop is added afterward.
 """
 from __future__ import annotations
 

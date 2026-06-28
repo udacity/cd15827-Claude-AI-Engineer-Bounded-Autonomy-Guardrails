@@ -1,4 +1,4 @@
-# Exercise 4 — Solution
+# Step 4 — Solution
 
 ## What this solution contains
 
@@ -25,7 +25,3 @@ export ANTHROPIC_API_KEY=...
 .venv/bin/pytest tests/ -m live
 .venv/bin/manufacturing-qc run data/defect_reports/D-0001.json
 ```
-
-## Cleanup-only differences vs. the original reference
-
-None. `solution(4)` equals the reference repo byte-for-byte across the `manufacturing_qc/`, `tests/`, `data/`, and `pyproject.toml` files. (The reference's `notes/build-friction.md` and `spec/` are upstream artifacts and are intentionally not shipped to learners.)

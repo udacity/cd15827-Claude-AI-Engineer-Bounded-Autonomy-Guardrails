@@ -75,7 +75,7 @@ class Cause(BaseModel):
 #   - SupplierFindings leaf fields: "component_records", "supplier_incident_summary"
 #   - ComponentRecord leaf fields: "component_id", "supplier", "lot_id", "received_at",
 #     "prior_incidents"
-#   - The refinement token "refinement" (used by the US-04 refinement loop later)
+#   - The refinement token "refinement" (used by the refinement loop later)
 # The allowlist is intentionally permissive (substring match, not exact equality), because
 # the model returns evidence strings like "defect_type=SOLDER-BRIDGE" rather than bare names.
 _ALLOWED_EVIDENCE_FIELDS: frozenset[str] = frozenset()

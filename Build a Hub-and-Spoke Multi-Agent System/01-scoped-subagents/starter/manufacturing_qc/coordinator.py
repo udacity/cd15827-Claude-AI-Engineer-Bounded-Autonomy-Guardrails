@@ -7,10 +7,10 @@ At this stage the coordinator skeleton is in place: it accepts a runner, accepts
 DefectReport, and returns a CorrectiveActionReport. The helper methods that will
 actually drive the four subagents (`_invoke_root_cause`, `_invoke_report`,
 `build_root_cause_payload`) are given to you below as infrastructure; the parallel
-spawn helper is introduced in US-02. Coordinator.run currently returns empty fields,
-which AC-01-04 explicitly allows for this stage.
+spawn helper is introduced in a later step. Coordinator.run currently returns empty fields,
+which is expected at this stage.
 
-Your work in this exercise is the SCOPE_COVERAGE map below (plus the four
+Your work in this step is the SCOPE_COVERAGE map below (plus the four
 SubagentDefinition instances in `subagents.py`).
 """
 from __future__ import annotations
@@ -96,7 +96,7 @@ def build_root_cause_payload(
 ) -> dict[str, object]:
     """Compose the structured payload handed to the root-cause subagent.
 
-    At this stage the inputs are forwarded as-is; US-03 will tighten the contract by
+    At this stage the inputs are forwarded as-is; a later step tightens the contract by
     validating each input against its Pydantic schema before the call.
     """
     return {

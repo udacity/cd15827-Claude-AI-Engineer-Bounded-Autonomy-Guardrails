@@ -1,4 +1,4 @@
-# Exercise 1 — Define the Coordinator and Four Scoped Subagents
+# Step 1 — Define the Coordinator and Four Scoped Subagents
 
 ## What to build
 
@@ -31,7 +31,7 @@ All 12 tests in `tests/test_subagent_definitions.py` should pass when the four s
 - `manufacturing_qc/models.py` — Pydantic models for every payload that crosses a subagent boundary.
 - `manufacturing_qc/runner.py` — the Anthropic SDK runner that drives subagent calls.
 - `manufacturing_qc/tools.py` — the `sqlite_lookup` tool used by the supplier subagent.
-- `manufacturing_qc/coordinator.py` — coordinator skeleton plus helper methods (`_invoke_root_cause`, `_invoke_report`, `build_root_cause_payload`); the parallel-spawn logic is added in Exercise 2.
+- `manufacturing_qc/coordinator.py` — coordinator skeleton plus helper methods (`_invoke_root_cause`, `_invoke_report`, `build_root_cause_payload`); the parallel-spawn logic is added in a later step.
 - `manufacturing_qc/__main__.py` — CLI entry point.
 - `data/components.sqlite` and `data/defect_reports/D-0001.json` ... `D-0004.json` — sample data.
-- `tests/test_subagent_definitions.py` — the scoped test suite for this exercise.
+- `tests/test_subagent_definitions.py` — the scoped test suite for this step.

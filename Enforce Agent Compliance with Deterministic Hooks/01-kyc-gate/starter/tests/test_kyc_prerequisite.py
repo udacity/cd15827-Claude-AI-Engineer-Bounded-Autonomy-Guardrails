@@ -1,4 +1,4 @@
-"""US-01 — Hook engine + programmatic KYC prerequisite gate."""
+"""Hook engine + programmatic KYC prerequisite gate."""
 from __future__ import annotations
 
 from typing import Any
@@ -22,7 +22,7 @@ class SpyTool:
         return self.result
 
 
-# --- AC-01-01: HookDecision variants + engine short-circuits on first non-allow ---
+# --- HookDecision variants + engine short-circuits on first non-allow ---
 
 
 def test_hook_decision_variants() -> None:
@@ -55,7 +55,7 @@ def test_engine_short_circuits_on_first_deny() -> None:
     assert fired == ["a"]  # hook_b never ran
 
 
-# --- AC-01-02: kyc hook deny/allow per tool + verified state ---
+# --- kyc hook deny/allow per tool + verified state ---
 
 
 @pytest.mark.parametrize("tool", ["initiate_transfer", "adjust_balance", "resolve_dispute"])
@@ -80,7 +80,7 @@ def test_non_money_tools_always_allowed(tool: str) -> None:
     assert decision.is_allow
 
 
-# --- AC-01-03 + AC-01-04: gate enforced by engine; verify_kyc records verified id ---
+# --- gate enforced by engine; verify_kyc records verified id ---
 
 
 def test_denied_call_not_executed_and_returns_business_error() -> None:
@@ -134,7 +134,7 @@ def test_verify_kyc_failure_does_not_record() -> None:
     assert "C9" not in state.verified_customers
 
 
-# --- AC-01-05: ComplianceLog records every decision ---
+# --- ComplianceLog records every decision ---
 
 
 def test_compliance_log_records_denied_transfer() -> None:

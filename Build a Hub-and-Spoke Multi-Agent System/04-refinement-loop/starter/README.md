@@ -1,8 +1,8 @@
-# Exercise 4 — Add a Bounded Iterative Refinement Loop
+# Step 4 — Add a Bounded Iterative Refinement Loop
 
 ## What to build
 
-Add the refinement loop that re-invokes the root cause subagent when the report agent flags a coverage gap, bounded by `max_refinements`. After this exercise, the multi-agent system is complete.
+Add the refinement loop that re-invokes the root cause subagent when the report agent flags a coverage gap, bounded by `max_refinements`. After this step, the multi-agent system is complete.
 
 ## TODO locations
 
@@ -27,7 +27,7 @@ python3 -m venv .venv
 .venv/bin/pytest tests/ -x  # full regression
 ```
 
-All 9 unit tests in `tests/test_refinement_loop.py` should pass; the 33 tests from Exercises 1-3 should still pass. The live API test (1 skipped) runs against the real Anthropic API when you set `ANTHROPIC_API_KEY` and pass `-m live`:
+All 9 unit tests in `tests/test_refinement_loop.py` should pass; the 33 tests from steps 1-3 should still pass. The live API test (1 skipped) runs against the real Anthropic API when you set `ANTHROPIC_API_KEY` and pass `-m live`:
 
 ```bash
 export ANTHROPIC_API_KEY=...
@@ -36,6 +36,6 @@ export ANTHROPIC_API_KEY=...
 
 ## What's already provided
 
-Everything from Exercises 1-3, plus:
+Everything from steps 1-3, plus:
 
-- `tests/test_refinement_loop.py` — the scoped test suite for this exercise (8 unit tests + 1 live).
+- `tests/test_refinement_loop.py` — the scoped test suite for this step (8 unit tests + 1 live).

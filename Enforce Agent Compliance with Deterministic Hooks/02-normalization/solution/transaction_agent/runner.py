@@ -53,7 +53,7 @@ class ViolationAttemptRunner:
 
     Plan: call ``verify_kyc`` (its result is honest — it only succeeds for verified customers),
     then attempt the money-movement tool, then end. With hooks active the attempt is blocked
-    deterministically; with hooks off it executes — which is exactly the contrast US-04 measures.
+    deterministically; with hooks off it executes — which is exactly the contrast this harness measures.
     """
 
     def __init__(self, request: dict[str, Any]) -> None:

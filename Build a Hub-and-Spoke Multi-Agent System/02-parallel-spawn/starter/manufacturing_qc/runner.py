@@ -11,7 +11,7 @@ Each subagent invocation:
    into the output schema and returned.
 
 Anthropic API errors are not caught here — the coordinator's partial-failure
-handling treats raised exceptions as the failure signal (see AC-02-04).
+handling treats raised exceptions as the failure signal.
 """
 from __future__ import annotations
 

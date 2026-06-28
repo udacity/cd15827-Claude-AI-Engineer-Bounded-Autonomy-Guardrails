@@ -1,4 +1,4 @@
-# Exercise 3 — Solution
+# Step 3 — Solution
 
 ## What this solution contains
 
@@ -9,7 +9,7 @@
   deterministic arm and nothing in the prompt-only arm, and the violation predicate counts a
   run as a violation when a money-movement tool actually executed.
 
-This is the complete project. `solution(3)` equals the reference repo.
+This is the complete project.
 
 ## Verify
 
@@ -28,11 +28,3 @@ Live arm (optional, needs `ANTHROPIC_API_KEY`):
 .venv/bin/pytest tests/ -m live
 .venv/bin/transaction-agent compare
 ```
-
-## Differences from the reference repo (cleanup-only)
-
-This `solution/` is byte-identical to the reference `transaction_agent/` package, `tests/`,
-`data/`, and `pyproject.toml`. The only omissions are non-learner artifacts not shipped into the
-course: the repo's top-level `README.md`, the `spec/` directory (PRD, learning objectives,
-validation report), and the `notes/` directory (the build-friction log consumed during content
-authoring). No source code differs.

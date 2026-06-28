@@ -1,4 +1,4 @@
-# Exercise 2 — Solution
+# Step 2 — Solution
 
 ## What this solution contains
 
@@ -13,4 +13,4 @@ python3 -m venv .venv
 .venv/bin/pytest tests/ -x
 ```
 
-All 22 tests pass (12 from Exercise 1 + 10 from Exercise 2).
+All 22 tests pass (12 from step 1 + 10 from step 2).

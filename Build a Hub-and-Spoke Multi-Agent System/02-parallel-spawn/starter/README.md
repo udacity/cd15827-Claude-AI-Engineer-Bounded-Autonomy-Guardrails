@@ -1,4 +1,4 @@
-# Exercise 2 — Spawn Subagents in Parallel with Scoped Context
+# Step 2 — Spawn Subagents in Parallel with Scoped Context
 
 ## What to build
 
@@ -22,15 +22,15 @@ python3 -m venv .venv
 
 ```bash
 .venv/bin/pytest tests/test_parallel_spawn.py -x
-.venv/bin/pytest tests/ -x  # also re-run the Exercise 1 tests
+.venv/bin/pytest tests/ -x  # also re-run the step 1 tests
 ```
 
 All 10 tests in `tests/test_parallel_spawn.py` should pass; the 12 tests from `tests/test_subagent_definitions.py` should still pass.
 
 ## What's already provided
 
-Everything from Exercise 1, plus:
+Everything from step 1, plus:
 
 - `manufacturing_qc/coordinator.py:_invoke_root_cause` and `_invoke_report` — given infrastructure that you call from `Coordinator.run`.
-- `manufacturing_qc/coordinator.py:build_root_cause_payload` — passthrough composer that will be tightened in Exercise 3.
-- `tests/test_parallel_spawn.py` — the scoped test suite for this exercise.
+- `manufacturing_qc/coordinator.py:build_root_cause_payload` — passthrough composer that will be tightened in a later step.
+- `tests/test_parallel_spawn.py` — the scoped test suite for this step.

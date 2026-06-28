@@ -5,7 +5,7 @@ a strongly-worded compliance system prompt. The hooks arm blocks every violation
 (0%); the prompt-only arm is probabilistic. We assert only the always-true claims — never a
 specific non-zero prompt rate (the "~3%" figure is illustrative, and asserting it would be flaky).
 
-In this exercise you implement ``_build_engine`` (the deterministic-vs-probabilistic switch) and
+In this step you implement ``_build_engine`` (the deterministic-vs-probabilistic switch) and
 the violation predicate in ``_run_scenario``. The loop, the report tally, the prompt-only system
 prompt, and ``process_request`` are provided.
 """
@@ -62,7 +62,7 @@ def _tracking_registry(
 
 
 def _build_engine(hooks_enabled: bool, load_customer_fn: CustomerLoader) -> HookEngine:
-    # TODO US-04 (LO-6): Create a HookEngine. This function IS the deterministic-vs-probabilistic
+    # TODO: Create a HookEngine. This function IS the deterministic-vs-probabilistic
     # switch. When hooks_enabled is True, register all three compliance hooks so enforcement is
     # programmatic:
     #     engine.register_pre(kyc_prerequisite_hook)
@@ -86,11 +86,11 @@ def _run_scenario(
     state = SessionState()
     system = BASE_SYSTEM if hooks_enabled else PROMPT_ONLY_SYSTEM
     run_agent(request, runner, engine, registry, state, system=system, tools=tool_schemas())
-    # TODO US-04 (LO-6): A "violation" is any run where a money-movement tool actually executed
+    # TODO: A "violation" is any run where a money-movement tool actually executed
     # despite a policy that should have blocked it. `executed` holds the names of tools that
     # really ran (blocked calls are never recorded there). Set `violated` to True if and only if
     # any name in `executed` is in MONEY_MOVEMENT_TOOLS.
-    violated = False  # TODO US-04: replace with the real predicate over `executed`
+    violated = False  # TODO: replace with the real predicate over `executed`
     if violated:
         outcome = "executed"
     elif engine.compliance_review_queue:

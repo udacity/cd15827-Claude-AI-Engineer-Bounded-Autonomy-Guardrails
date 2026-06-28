@@ -1,6 +1,4 @@
-"""US-03 — Sequential delegation with structured context handoff.
-
-Covers AC-03-01 through AC-03-04.
+"""Sequential delegation with structured context handoff.
 """
 from __future__ import annotations
 
@@ -30,7 +28,7 @@ from manufacturing_qc.models import (
 )
 
 
-# AC-03-01: structured input validation for root cause
+# structured input validation for root cause
 def test_build_root_cause_payload_accepts_valid_inputs() -> None:
     defect = DefectClassification(
         defect_type="SOLDER-BRIDGE", severity="high", description_summary="bridge"
@@ -64,7 +62,7 @@ def test_build_root_cause_payload_rejects_malformed_supplier() -> None:
         build_root_cause_payload(defect.model_dump(), bad_supplier)
 
 
-# AC-03-02: RootCauseHypothesis constraints
+# RootCauseHypothesis constraints
 def test_root_cause_requires_at_least_one_cause() -> None:
     with pytest.raises(ValidationError):
         RootCauseHypothesis(ranked_causes=[])
@@ -110,7 +108,7 @@ def test_root_cause_accepts_evidence_that_references_supplier_fields() -> None:
     assert len(hypothesis.ranked_causes) == 1
 
 
-# AC-03-03: report agent receives only RootCauseHypothesis + defect_id (+ partial_failures meta)
+# report agent receives only RootCauseHypothesis + defect_id (+ partial_failures meta)
 @pytest.mark.asyncio
 async def test_report_agent_payload_does_not_include_classifier_or_supplier_outputs() -> None:
     calls: list[tuple[str, Mapping[str, object]]] = []
@@ -135,7 +133,7 @@ async def test_report_agent_payload_does_not_include_classifier_or_supplier_outp
     )
 
 
-# AC-03-04: CorrectiveActionReport has both fields and is non-empty against a fixture
+# CorrectiveActionReport has both fields and is non-empty against a fixture
 @pytest.mark.asyncio
 async def test_pipeline_produces_non_empty_corrective_actions_from_fixture() -> None:
     fixture_dir = Path(__file__).parent.parent / "data" / "defect_reports"

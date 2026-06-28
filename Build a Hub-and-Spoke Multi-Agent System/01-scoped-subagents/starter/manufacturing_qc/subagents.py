@@ -2,7 +2,7 @@
 
 A `SubagentDefinition` is the static specification of one subagent's role: name,
 goal-oriented system prompt, the small set of tools it is permitted to use, and
-the Pydantic schema its output must conform to. Your job in this exercise is to
+the Pydantic schema its output must conform to. Your job in this step is to
 fill in the four canonical hub-and-spoke definitions for the QC pipeline.
 
 Subagents are stateless and context-isolated; a runner invokes one with a scoped

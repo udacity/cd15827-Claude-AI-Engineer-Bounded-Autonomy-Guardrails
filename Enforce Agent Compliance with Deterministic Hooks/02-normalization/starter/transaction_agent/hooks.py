@@ -3,7 +3,7 @@
 Each hook is a deterministic check — the enforcement is programmatic, not prompt-based, so a
 zero-tolerance rule (KYC before money movement) cannot leak.
 
-The KYC prerequisite hook is already complete from Exercise 1. In this exercise you implement
+The KYC prerequisite hook is already complete from step 1. In this step you implement
 ``normalization_hook`` (a PostToolUse hook) and its two field-level helpers.
 """
 from __future__ import annotations
@@ -43,7 +43,7 @@ def kyc_prerequisite_hook(call: ToolCall, state: SessionState) -> HookDecision:
 
 
 def _normalize_monetary(value: Any) -> Any:
-    # TODO US-02 (LO-3): If value is a currency string, return
+    # TODO: If value is a currency string, return
     # normalize_currency(value).to_serializable() (the canonical {"amount", "currency"} dict).
     # If value is already a canonical Money dict (its keys are exactly {"amount", "currency"}),
     # return it unchanged so the hook is idempotent. Numeric amounts and anything else pass
@@ -52,7 +52,7 @@ def _normalize_monetary(value: Any) -> Any:
 
 
 def _normalize_status_value(value: Any) -> Any:
-    # TODO US-02 (LO-3): Normalize ONLY numeric status codes; pass strings through. Watch the
+    # TODO: Normalize ONLY numeric status codes; pass strings through. Watch the
     # sharp edge: get_customer returns a numeric status (1/2/3), but initiate_transfer returns
     # status="executed". A hook that maps every status key crashes on "executed". So: leave bool
     # untouched; for an int (or an all-digits string) call normalize_status(value); otherwise
@@ -69,7 +69,7 @@ def normalization_hook(
     timestamps (``timestamp``, ``date``, ``*_at``) → ISO-8601 UTC; numeric status
     (``status``, ``status_code``) → canonical label. Unrecognized keys pass through unchanged.
     """
-    # TODO US-02 (LO-3): Build and return a NEW dict. For each key/value in result, route by key
+    # TODO: Build and return a NEW dict. For each key/value in result, route by key
     # family: monetary keys (in _MONETARY_KEYS or ending in "_balance") -> _normalize_monetary;
     # timestamp keys (in _TIMESTAMP_KEYS or ending in "_at") -> normalize_timestamp, but pass a
     # None value through untouched; status keys (in _STATUS_KEYS) -> _normalize_status_value;

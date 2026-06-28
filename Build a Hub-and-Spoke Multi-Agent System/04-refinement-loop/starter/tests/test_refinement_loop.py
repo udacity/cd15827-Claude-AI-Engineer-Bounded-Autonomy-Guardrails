@@ -1,7 +1,7 @@
-"""US-04 — Iterative refinement loop on coverage gaps.
+"""Iterative refinement loop on coverage gaps.
 
-Covers AC-04-01 through AC-04-04 (the live test is gated by ANTHROPIC_API_KEY and
-runs only under `pytest -m live`).
+The live test is gated by ANTHROPIC_API_KEY and
+runs only under `pytest -m live`.
 """
 from __future__ import annotations
 
@@ -93,7 +93,7 @@ class _GapStreakRunner:
             )
 
 
-# AC-04-01: refinement query shape
+# refinement query shape
 @pytest.mark.asyncio
 async def test_refinement_query_passed_to_root_cause_on_gap() -> None:
     runner = _GapStreakRunner(gap_rounds=1)
@@ -120,7 +120,7 @@ async def test_initial_root_cause_call_has_no_refinement_field() -> None:
     assert "refinement" not in runner.root_cause_calls[0]
 
 
-# AC-04-02: hard cap behavior, configurable
+# hard cap behavior, configurable
 @pytest.mark.asyncio
 async def test_max_refinements_one_caps_root_cause_at_two_calls() -> None:
     runner = _GapStreakRunner(gap_rounds=5)  # always reports a gap within the cap
@@ -156,7 +156,7 @@ def test_max_refinements_negative_rejected() -> None:
         Coordinator(runner=_NoopRunner(), max_refinements=-1)
 
 
-# AC-04-03: refinement_rounds bookkeeping
+# refinement_rounds bookkeeping
 @pytest.mark.asyncio
 async def test_refinement_rounds_zero_when_no_gap() -> None:
     runner = _GapStreakRunner(gap_rounds=0)
@@ -186,7 +186,7 @@ async def test_refinement_rounds_caps_when_gap_persists() -> None:
     assert result.coverage_gap is not None
 
 
-# AC-04-04: live end-to-end
+# live end-to-end
 @pytest.mark.live
 @pytest.mark.skipif(
     not os.environ.get("ANTHROPIC_API_KEY"),

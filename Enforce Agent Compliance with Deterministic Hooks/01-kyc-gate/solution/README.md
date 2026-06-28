@@ -1,4 +1,4 @@
-# Exercise 1 — Solution
+# Step 1 — Solution
 
 ## What this solution contains
 
@@ -10,7 +10,7 @@
   id on a successful `verify_kyc`).
 
 The engine also wires the redirect branch so it is complete; that branch is first exercised in
-Exercise 3.
+step 3.
 
 ## Verify
 

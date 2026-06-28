@@ -90,7 +90,7 @@ _ALLOWED_EVIDENCE_FIELDS = frozenset(
         "prior_incidents",
         # The refinement instruction appears in the payload on re-investigation
         # rounds; the model is allowed to cite it as evidence of the gap it is
-        # addressing (see US-04 / AC-04-01).
+        # addressing.
         "refinement",
     }
 )

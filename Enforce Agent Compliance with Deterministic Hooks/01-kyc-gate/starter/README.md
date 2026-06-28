@@ -1,4 +1,4 @@
-# Exercise 1 — Enforce a KYC Prerequisite in Code, Not the Prompt
+# Step 1 — Enforce a KYC Prerequisite in Code, Not the Prompt
 
 ## What to build
 
@@ -43,4 +43,4 @@ tool, is the control.
 - `transaction_agent/engine.py` — the registration plumbing (`register_pre`/`register_post`,
   `run_post`, the queue property) and the `_business_error` helper.
 - `data/` — customer records and transaction requests.
-- `tests/test_kyc_prerequisite.py` — the scoped test suite for this exercise.
+- `tests/test_kyc_prerequisite.py` — the scoped test suite for this step.

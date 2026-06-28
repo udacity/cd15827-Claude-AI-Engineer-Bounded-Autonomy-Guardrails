@@ -1,4 +1,4 @@
-"""US-02 — PostToolUse heterogeneous data normalization hook."""
+"""PostToolUse heterogeneous data normalization hook."""
 from __future__ import annotations
 
 from decimal import Decimal
@@ -16,7 +16,7 @@ from transaction_agent.money import (
     normalize_timestamp,
 )
 
-# --- AC-02-01: currency parsing across formats, exact Decimal ---
+# --- currency parsing across formats, exact Decimal ---
 
 
 @pytest.mark.parametrize(
@@ -43,7 +43,7 @@ def test_normalize_currency_is_decimal_not_float() -> None:
     assert total == Decimal("0.30")
 
 
-# --- AC-02-02: typed errors, no silent default ---
+# --- typed errors, no silent default ---
 
 
 def test_currency_parse_error_carries_raw() -> None:
@@ -64,7 +64,7 @@ def test_status_code_error_carries_raw() -> None:
     assert "99" in str(exc.value)
 
 
-# --- AC-02-06: timestamp + status normalizers ---
+# --- timestamp + status normalizers ---
 
 
 def test_normalize_timestamp_epoch_to_iso() -> None:
@@ -83,7 +83,7 @@ def test_normalize_status_maps_codes() -> None:
     assert normalize_status(3) == "frozen"
 
 
-# --- AC-02-03 + AC-02-04: the hook canonicalizes by key family ---
+# --- the hook canonicalizes by key family ---
 
 
 def _customer_result() -> dict[str, object]:
@@ -121,7 +121,7 @@ def test_hook_handles_null_timestamp() -> None:
     assert out["status"] == "dormant"
 
 
-# --- AC-02-05: idempotency across all families ---
+# --- idempotency across all families ---
 
 
 def test_hook_idempotent() -> None:

@@ -1,4 +1,4 @@
-"""US-04 — Enforcement-vs-prompt comparison harness + CLI + loop lifecycle."""
+"""Enforcement-vs-prompt comparison harness + CLI + loop lifecycle."""
 from __future__ import annotations
 
 import json
@@ -21,7 +21,7 @@ def _offline_factory(request: dict[str, Any], arm: str) -> ViolationAttemptRunne
     return ViolationAttemptRunner(request)
 
 
-# --- AC-04-01 + AC-04-02 + AC-04-03: deterministic comparison ---
+# --- deterministic comparison ---
 
 
 def test_hooks_block_every_violation_deterministically() -> None:
@@ -107,7 +107,7 @@ def test_loop_runs_tool_then_ends() -> None:
     assert outcome.executed_tools == ["get_customer"]
 
 
-# --- AC-04-05: CLI ---
+# --- CLI ---
 
 
 def test_cli_compare_offline(capsys: pytest.CaptureFixture[str]) -> None:
@@ -144,7 +144,7 @@ def test_cli_requires_key_without_offline(
     assert "ANTHROPIC_API_KEY" in capsys.readouterr().err
 
 
-# --- AC-04-04: live arm (skipped without a key) ---
+# --- live arm (skipped without a key) ---
 
 
 @pytest.mark.live

@@ -1,7 +1,7 @@
 """Hub-and-spoke coordinator.
 
 The coordinator owns all inter-subagent communication. Subagents never call each
-other; every handoff is mediated here. In this exercise you wire up the parallel
+other; every handoff is mediated here. In this step you wire up the parallel
 classifier+supplier branch and pipe its outputs through the existing helper methods.
 
 The helper methods `_invoke_root_cause`, `_invoke_report`, and `build_root_cause_payload`
@@ -131,7 +131,7 @@ def build_root_cause_payload(
 ) -> dict[str, object]:
     """Compose the structured payload handed to the root-cause subagent.
 
-    At this stage the inputs are forwarded as-is; US-03 will tighten the contract by
+    At this stage the inputs are forwarded as-is; a later step tightens the contract by
     validating each input against its Pydantic schema before the call.
     """
     return {

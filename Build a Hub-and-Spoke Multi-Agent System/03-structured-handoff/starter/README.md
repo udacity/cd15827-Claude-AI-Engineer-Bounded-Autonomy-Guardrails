@@ -1,4 +1,4 @@
-# Exercise 3 — Pass Structured Outputs Between Agents with Pydantic Handoff
+# Step 3 — Pass Structured Outputs Between Agents with Pydantic Handoff
 
 ## What to build
 
@@ -25,11 +25,11 @@ python3 -m venv .venv
 .venv/bin/pytest tests/ -x  # full regression
 ```
 
-All 11 tests in `tests/test_structured_handoff.py` should pass; the 22 tests from Exercises 1-2 should still pass.
+All 11 tests in `tests/test_structured_handoff.py` should pass; the 22 tests from steps 1-2 should still pass.
 
 ## What's already provided
 
-Everything from Exercises 1-2, plus:
+Everything from steps 1-2, plus:
 
 - `manufacturing_qc/coordinator.py:_invoke_report` — the structured payload going to the report agent already has the right shape (`defect_id`, `root_cause_hypothesis`, `partial_failures` only).
-- `tests/test_structured_handoff.py` — the scoped test suite for this exercise.
+- `tests/test_structured_handoff.py` — the scoped test suite for this step.

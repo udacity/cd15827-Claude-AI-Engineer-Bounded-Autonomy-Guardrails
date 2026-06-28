@@ -1,6 +1,4 @@
-"""US-01 — Define coordinator and four scoped subagents.
-
-Covers AC-01-01 through AC-01-06.
+"""Define coordinator and four scoped subagents.
 """
 from __future__ import annotations
 
@@ -25,7 +23,7 @@ from manufacturing_qc.coordinator import SCOPE_COVERAGE
 ALL_SUBAGENTS = [DEFECT_CLASSIFIER, SUPPLIER_DATA, ROOT_CAUSE, REPORT]
 
 
-# AC-01-01: SubagentDefinition shape and four instances exist
+# SubagentDefinition shape and four instances exist
 def test_subagent_definition_is_a_dataclass_with_required_fields() -> None:
     assert dataclasses.is_dataclass(SubagentDefinition)
     field_names = {f.name for f in dataclasses.fields(SubagentDefinition)}
@@ -43,7 +41,7 @@ def test_each_subagent_output_schema_is_a_pydantic_model() -> None:
         assert issubclass(s.output_schema, BaseModel)
 
 
-# AC-01-03: scoped allowed_tools
+# scoped allowed_tools
 def test_allowed_tools_subset_of_known_tools() -> None:
     known = {"sqlite_lookup", "emit_report"}
     for s in ALL_SUBAGENTS:
@@ -62,7 +60,7 @@ def test_supplier_agent_has_sqlite_lookup() -> None:
     assert "sqlite_lookup" in SUPPLIER_DATA.allowed_tools
 
 
-# AC-01-02: goal-oriented, not procedural prompts
+# goal-oriented, not procedural prompts
 PROCEDURAL_TELLS = ("step 1", "first,", "then,", "next,", "after that")
 
 
@@ -73,7 +71,7 @@ def test_prompts_are_not_procedural() -> None:
             assert tell not in lowered, f"{s.name} prompt contains procedural language: '{tell}'"
 
 
-# AC-01-05: structured-output contract present in the prompt
+# structured-output contract present in the prompt
 def test_each_prompt_states_output_contract() -> None:
     for s in ALL_SUBAGENTS:
         schema_name = s.output_schema.__name__
@@ -84,7 +82,7 @@ def test_each_prompt_states_output_contract() -> None:
         )
 
 
-# AC-01-06: SCOPE_COVERAGE doc + no orphan dimension
+# SCOPE_COVERAGE doc + no orphan dimension
 EXPECTED_DIMENSIONS = {"defect-type", "sourcing", "root-cause", "corrective-action"}
 
 
@@ -109,7 +107,7 @@ def test_subagent_prompts_jointly_cover_all_dimensions() -> None:
         assert any(k in joined for k in keywords), f"dimension '{dim}' orphaned"
 
 
-# AC-01-04: Coordinator.run is callable and returns a CorrectiveActionReport
+# Coordinator.run is callable and returns a CorrectiveActionReport
 @pytest.mark.asyncio
 async def test_coordinator_run_returns_corrective_action_report() -> None:
     coordinator = Coordinator(runner=_NullRunner())
@@ -127,7 +125,7 @@ async def test_coordinator_run_returns_corrective_action_report() -> None:
 
 class _NullRunner:
     """A subagent runner that returns empty/default outputs — used to exercise the
-    coordinator's wiring before US-02/US-03 fill in the real flow.
+    coordinator's wiring before the later steps fill in the real flow.
     """
 
     async def run(

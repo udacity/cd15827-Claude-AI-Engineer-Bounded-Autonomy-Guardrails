@@ -1,6 +1,6 @@
-# Exercise 3 — Intercept the Risky Transfer and Prove Hooks Beat Prompts
+# Step 3 — Intercept the Risky Transfer and Prove Hooks Beat Prompts
 
-> Picks up from Exercise 2. The KYC gate and normalization hook are in place. This final exercise
+> Picks up from step 2. The KYC gate and normalization hook are in place. This final step
 > adds the interception hook, the structured handoff, and the comparison harness that proves
 > deterministic enforcement beats even a maximal prompt. When it passes, you have the full
 > reference project.
@@ -43,11 +43,11 @@ blocks every violation and the prompt-only arm leaks them — the central thesis
 
 ## What's already provided
 
-- Everything from Exercises 1 and 2 (engine, KYC hook, normalization, money, models, tools,
+- Everything from steps 1 and 2 (engine, KYC hook, normalization, money, models, tools,
   runner, loop, data).
 - `transaction_agent/models.py` — the `HandoffSummary` model.
 - `transaction_agent/comparison.py` — the run loop, the report tally, the `PROMPT_ONLY_SYSTEM`
   prompt, the tool-tracking registry, and `process_request`.
 - `transaction_agent/__main__.py` — the `transaction-agent run` / `compare` CLI.
 - `tests/test_interception_handoff.py` and `tests/test_comparison_and_cli.py` — the scoped tests
-  for this exercise.
+  for this step.

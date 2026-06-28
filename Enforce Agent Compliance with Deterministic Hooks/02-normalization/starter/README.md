@@ -1,6 +1,6 @@
-# Exercise 2 — Normalize Messy Tool Output Before the Model Reads It
+# Step 2 — Normalize Messy Tool Output Before the Model Reads It
 
-> Picks up from Exercise 1. Your KYC gate and hook engine are in place. This exercise adds the
+> Picks up from step 1. Your KYC gate and hook engine are in place. This step adds the
 > `PostToolUse` side of the engine: a hook that canonicalizes heterogeneous tool output before
 > the model ever sees it.
 
@@ -35,11 +35,11 @@ python3 -m venv .venv
 ```
 
 All tests in `tests/test_normalization.py` should pass. `tests/test_kyc_prerequisite.py` from
-Exercise 1 still passes too.
+Step 1 still passes too.
 
 ## What's already provided
 
-- Everything from Exercise 1 (engine, KYC hook, models, tools, runner, loop, data).
+- Everything from step 1 (engine, KYC hook, models, tools, runner, loop, data).
 - `transaction_agent/money.py` — the typed parse-error classes, the currency lookup tables, the
   `_detect_currency` helper, and `coerce_money`.
-- `tests/test_normalization.py` — the scoped test suite for this exercise.
+- `tests/test_normalization.py` — the scoped test suite for this step.

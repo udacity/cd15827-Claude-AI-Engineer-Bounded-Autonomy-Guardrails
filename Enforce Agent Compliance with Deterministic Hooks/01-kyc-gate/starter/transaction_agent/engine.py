@@ -7,7 +7,7 @@ Firing sites (the one ambiguity pinned by spec validation):
 * ``PostToolUse`` hooks fire **after** the tool function returns and **before** the result is
   handed back to the model, so the model only ever sees canonicalized data.
 
-In this exercise you implement ``run_pre`` and ``execute_tool_call`` — the two methods that
+In this step you implement ``run_pre`` and ``execute_tool_call`` — the two methods that
 make enforcement happen *in the engine*, before a tool runs. The registration plumbing and the
 business-error helper are provided.
 """
@@ -59,7 +59,7 @@ class HookEngine:
 
     def run_pre(self, call: ToolCall, state: SessionState) -> HookDecision:
         """Run PreToolUse hooks in registration order, short-circuiting on the first non-allow."""
-        # TODO US-01 (LO-2): Run each registered PreToolUse hook (they live in self._pre) in
+        # TODO: Run each registered PreToolUse hook (they live in self._pre) in
         # order, calling each with (call, state). The FIRST hook that returns a non-allow
         # decision wins: return it immediately and do not run the remaining hooks. Use
         # HookDecision.is_allow to test a decision. If every hook allows, return
@@ -81,7 +81,7 @@ class HookEngine:
         registry: Mapping[str, Any],
     ) -> ToolResult:
         """Enforce hooks, dispatch the tool if allowed, return the result the model will see."""
-        # TODO US-01 (LO-2): Enforcement happens HERE, in the engine, before the tool runs —
+        # TODO: Enforcement happens HERE, in the engine, before the tool runs —
         # never inside the tool function. Implement the flow:
         #   1. Read customer_id from call.input (it may be None).
         #   2. decision = self.run_pre(call, state). Record it: self.log.record(call.name,
@@ -91,7 +91,7 @@ class HookEngine:
         #   4. If decision.decision is DecisionType.REDIRECT: append decision.payload (or {}) to
         #      the queue named by decision.target (default "compliance_review_queue") in
         #      self.queues, then return a self._business_error explaining the call was held for
-        #      review. (Redirect is exercised in Exercise 3; wire it now so the engine is whole.)
+        #      review. (Redirect is exercised in a later step; wire it now so the engine is whole.)
         #   5. Otherwise the call is allowed: raw = registry[call.name](**call.input); run it
         #      through self.run_post(call.name, raw, state). If this call was a successful
         #      verify_kyc (the result has a truthy "kyc_verified" and a "customer_id"), add that

@@ -1,11 +1,11 @@
 """Hub-and-spoke coordinator.
 
 The coordinator owns all inter-subagent communication. Subagents never call each
-other; every handoff is mediated here. In this exercise you add the iterative
+other; every handoff is mediated here. In this step you add the iterative
 refinement loop: when the report agent flags a coverage_gap, re-investigate via
 the root_cause subagent (bounded by max_refinements).
 
-Everything else is already wired up from the previous exercises. Your work is:
+Everything else is already wired up from the previous steps. Your work is:
 - Extend `Coordinator.__init__` to accept and validate `max_refinements`.
 - Extend `Coordinator.run` to loop on coverage_gap up to `max_refinements` times.
 - Extend `_invoke_root_cause` to optionally include a refinement string in the payload.

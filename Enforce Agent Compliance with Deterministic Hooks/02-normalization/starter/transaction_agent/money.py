@@ -4,7 +4,7 @@ These exist because upstream tools emit data in whatever format their source sys
 PostToolUse normalization hook is the single place that canonicalizes them, so the model only
 ever reasons over one representation. Currency amounts are exact ``Decimal`` — never ``float``.
 
-In this exercise you implement the four normalizers (``_parse_amount``, ``normalize_currency``,
+In this step you implement the four normalizers (``_parse_amount``, ``normalize_currency``,
 ``normalize_timestamp``, ``normalize_status``). The currency-detection helper, the typed error
 classes, the lookup tables, and ``coerce_money`` are provided.
 """
@@ -60,7 +60,7 @@ def _detect_currency(raw: str) -> str:
 
 
 def _parse_amount(numeric: str, raw: str) -> Decimal:
-    # TODO US-02 (LO-3): Turn the digits-and-separators string ``numeric`` into an exact Decimal.
+    # TODO: Turn the digits-and-separators string ``numeric`` into an exact Decimal.
     # The hard part is that separators mean different things in different locales:
     #   "$1,234.56" -> comma=thousands, dot=decimal  -> 1234.56
     #   "EUR 1.234,56" -> dot=thousands, comma=decimal -> 1234.56
@@ -76,7 +76,7 @@ def _parse_amount(numeric: str, raw: str) -> Decimal:
 
 def normalize_currency(raw: str) -> Money:
     """Parse a currency string in any supported format into an exact :class:`Money`."""
-    # TODO US-02 (LO-3): Detect the currency with _detect_currency(raw), strip everything except
+    # TODO: Detect the currency with _detect_currency(raw), strip everything except
     # digits and separators (re.sub(r"[^0-9.,]", "", raw)), raise CurrencyParseError(raw) if
     # nothing numeric remains, and return Money(amount=_parse_amount(numeric, raw),
     # currency=<detected code>).
@@ -88,7 +88,7 @@ def normalize_timestamp(raw: object) -> str:
 
     Already-ISO-8601 input is returned unchanged (so the hook is idempotent).
     """
-    # TODO US-02 (LO-3): Reject bool explicitly (it is an int subclass). For int/float, return
+    # TODO: Reject bool explicitly (it is an int subclass). For int/float, return
     # datetime.fromtimestamp(float(raw), UTC).isoformat(). For a str: if it is all digits, treat
     # it as an epoch; otherwise validate it parses as ISO-8601 (datetime.fromisoformat) and
     # return it unchanged. Anything else raises TimestampParseError(raw).
@@ -118,7 +118,7 @@ def normalize_status(raw: object) -> str:
 
     String labels already in the canonical vocabulary are returned unchanged (idempotent).
     """
-    # TODO US-02 (LO-3): If raw is already a canonical label string (in _STATUS_LABELS.values()),
+    # TODO: If raw is already a canonical label string (in _STATUS_LABELS.values()),
     # return it unchanged. Reject bool. Convert numeric-string codes to int, look the code up in
     # _STATUS_LABELS, and return the label. Raise StatusCodeError(raw) on any unknown code.
     raise NotImplementedError("TODO US-02: implement status normalization")

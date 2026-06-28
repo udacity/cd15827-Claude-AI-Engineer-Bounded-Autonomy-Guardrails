@@ -1,21 +1,21 @@
 # Claude AI Engineer — Bounded Autonomy & Guardrails
 
-This repo is the source of truth for the exercises in this course. Each exercise is a
+This repo contains a set of self-contained Python projects. Each one is a
 self-contained Python project that builds, step by step, toward a complete reference
 implementation. Every step ships a `starter/` (with `# TODO:` markers) and a matching
 `solution/`, and is verified by a scoped `pytest` suite.
 
-The two exercise projects show two complementary ways to keep an autonomous agent inside
+The two projects show two complementary ways to keep an autonomous agent inside
 its lane: **structural** boundaries between cooperating agents, and **deterministic** code
 that enforces compliance regardless of the prompt.
 
 ## Folder Structure
 
-The repo contains one folder per exercise project. Each project folder contains numbered
+The repo contains one folder per project. Each project folder contains numbered
 build steps, and each step contains a `starter/` and a `solution/`:
 
 ```bash
-Exercise Project Name/
+Project Name/
 ├── 01-step-name/
 │   ├── starter/      # code with # TODO: markers + a step README.md
 │   └── solution/     # completed reference implementation
@@ -30,9 +30,9 @@ own `data/`, source package, `tests/`, and a `README.md` describing what to buil
 TODOs are, how to set up, and how to verify.
 
 > The step numbers (`01-`, `02-`, …) denote build order *within a single project* — each step
-> picks up where the previous one left off. They are not a fixed course ordering.
+> picks up where the previous one left off. They are not a fixed global ordering.
 
-## Exercises
+## Projects
 
 ### [Build a Hub-and-Spoke Multi-Agent System](Build%20a%20Hub-and-Spoke%20Multi-Agent%20System/)
 
@@ -53,7 +53,7 @@ a hook engine — in code, not in the prompt. Built over three steps:
 2. **[02-normalization](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/02-normalization/)** — A `PostToolUse` hook that canonicalizes messy tool output (locale-aware currency → `Decimal`, epoch → ISO-8601 UTC, status codes → labels) before the model reads it.
 3. **[03-interception-handoff](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/03-interception-handoff/)** — Intercept and redirect risky transfers to a compliance queue, produce a self-contained handoff summary, and run a harness proving deterministic enforcement beats even a maximal prompt.
 
-## Working an Exercise
+## Working a Step
 
 Each step's `starter/` and `solution/` is installed and tested the same way. From inside a step's
 `starter/` or `solution/` directory:

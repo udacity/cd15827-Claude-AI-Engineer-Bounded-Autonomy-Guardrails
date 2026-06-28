@@ -1,4 +1,4 @@
-# Exercise 3 — Solution
+# Step 3 — Solution
 
 ## What this solution contains
 

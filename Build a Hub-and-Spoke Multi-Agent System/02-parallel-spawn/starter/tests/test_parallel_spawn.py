@@ -1,6 +1,4 @@
-"""US-02 — Spawn defect classifier and supplier data agents in parallel.
-
-Covers AC-02-01 through AC-02-04.
+"""Spawn defect classifier and supplier data agents in parallel.
 """
 from __future__ import annotations
 
@@ -91,7 +89,7 @@ def _stub_output(subagent: SubagentDefinition) -> BaseModel:
     raise ValueError(f"unknown subagent {subagent.name}")
 
 
-# AC-02-01: parallel, not sequential
+# parallel, not sequential
 @pytest.mark.asyncio
 async def test_classifier_and_supplier_overlap_in_time() -> None:
     runner = _RecordingRunner(delay_seconds={"defect_classifier": 0.2, "supplier_data": 0.2})
@@ -105,7 +103,7 @@ async def test_classifier_and_supplier_overlap_in_time() -> None:
     assert overlap > 0, "classifier and supplier did not overlap — sequential, not parallel"
 
 
-# AC-02-02: 300ms each, both run in < 450ms (sequential would be ~600ms)
+# 300ms each, both run in < 450ms (sequential would be ~600ms)
 @pytest.mark.asyncio
 async def test_parallel_elapsed_less_than_sequential_sum() -> None:
     runner = _RecordingRunner(delay_seconds={"defect_classifier": 0.3, "supplier_data": 0.3})
@@ -116,7 +114,7 @@ async def test_parallel_elapsed_less_than_sequential_sum() -> None:
     assert elapsed < 0.45, f"elapsed {elapsed:.3f}s implies sequential execution"
 
 
-# AC-02-03 (runtime scoping): payloads only contain the scoped fields
+# runtime scoping: payloads only contain the scoped fields
 @pytest.mark.asyncio
 async def test_classifier_receives_only_description() -> None:
     runner = _RecordingRunner()
@@ -152,7 +150,7 @@ async def test_neither_classifier_nor_supplier_receives_defect_id_or_shift() -> 
             assert "line" not in payload
 
 
-# AC-02-03 (static prompt non-overlap)
+# static prompt non-overlap
 def test_classifier_prompt_does_not_mention_components() -> None:
     prompt = DEFECT_CLASSIFIER.system_prompt.lower()
     assert "component" not in prompt, (
@@ -170,7 +168,7 @@ def test_supplier_prompt_does_not_mention_defect_description() -> None:
     )
 
 
-# AC-02-04: partial failure of supplier
+# partial failure of supplier
 @pytest.mark.asyncio
 async def test_supplier_failure_records_marker_and_pipeline_continues() -> None:
     runner = _RecordingRunner(raise_for={"supplier_data"})
