@@ -39,7 +39,7 @@ class AnthropicSubagentRunner:
 
     def __init__(
         self,
-        model: str = "claude-haiku-4-5",
+        model: str = "claude-haiku-4-5-20251001",
         tool_handlers: Mapping[str, ToolHandler] | None = None,
         max_tool_iterations: int = 6,
     ) -> None:

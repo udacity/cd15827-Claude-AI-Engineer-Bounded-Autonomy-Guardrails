@@ -5,7 +5,7 @@ import os
 from decimal import Decimal
 from pathlib import Path
 
-DEFAULT_MODEL = "claude-haiku-4-5"
+DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 
 # $10,000 is this project's instantiation of the exam's generic "amount exceeds a threshold"
 # interception (Task 1.5 S2). Wire transfers strictly above this are redirected to compliance.

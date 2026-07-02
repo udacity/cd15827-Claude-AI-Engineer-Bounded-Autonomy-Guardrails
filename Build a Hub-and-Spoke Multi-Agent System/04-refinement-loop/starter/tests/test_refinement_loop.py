@@ -202,7 +202,7 @@ async def test_end_to_end_live_against_anthropic_api() -> None:
 
     db_path = Path(__file__).parent.parent / "data" / "components.sqlite"
     runner = AnthropicSubagentRunner(
-        model="claude-haiku-4-5",
+        model="claude-haiku-4-5-20251001",
         tool_handlers={"sqlite_lookup": lambda args: sqlite_lookup(db_path, **args)},
     )
     coordinator = Coordinator(runner=runner, max_refinements=1)
