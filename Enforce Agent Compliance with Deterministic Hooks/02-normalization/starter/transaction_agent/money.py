@@ -60,40 +60,78 @@ def _detect_currency(raw: str) -> str:
 
 
 def _parse_amount(numeric: str, raw: str) -> Decimal:
-    # TODO: Turn the digits-and-separators string ``numeric`` into an exact Decimal.
-    # The hard part is that separators mean different things in different locales:
-    #   "$1,234.56" -> comma=thousands, dot=decimal  -> 1234.56
-    #   "EUR 1.234,56" -> dot=thousands, comma=decimal -> 1234.56
-    # A naive numeric.replace(",", "") silently corrupts the European format, and float() loses
-    # cents. Rule that handles both: when BOTH separators are present, the one that appears LAST
-    # is the decimal separator and the other is thousands. When only commas are present, decide
-    # whether it is grouped thousands (1,234) or a decimal comma (1,56). Build a normalized
-    # string with "." as the decimal point and no thousands separators, then return
-    # Decimal(normalized). Raise CurrencyParseError(raw) (chaining from InvalidOperation) if the
-    # result is not a valid Decimal.
-    raise NotImplementedError("TODO US-02: parse the amount into an exact Decimal")
+    if not numeric:
+        raise CurrencyParseError(raw)
 
+    if "," in numeric and "." in numeric:
+        if numeric.rfind(",") > numeric.rfind("."):
+            decimal_separator = ","
+            thousands_separator = "."
+        else:
+            decimal_separator = "."
+            thousands_separator = ","
+
+        normalized = numeric.replace(thousands_separator, "")
+        normalized = normalized.replace(decimal_separator, ".")
+    elif "," in numeric:
+        parts = numeric.split(",")
+
+        if len(parts) > 2 or (
+            len(parts) == 2 and len(parts[1]) == 3
+        ):
+            normalized = numeric.replace(",", "")
+        else:
+            normalized = numeric.replace(",", ".")
+    else:
+        normalized = numeric
+
+    try:
+        return Decimal(normalized)
+    except InvalidOperation as exc:
+        raise CurrencyParseError(raw) from exc
 
 def normalize_currency(raw: str) -> Money:
     """Parse a currency string in any supported format into an exact :class:`Money`."""
-    # TODO: Detect the currency with _detect_currency(raw), strip everything except
-    # digits and separators (re.sub(r"[^0-9.,]", "", raw)), raise CurrencyParseError(raw) if
-    # nothing numeric remains, and return Money(amount=_parse_amount(numeric, raw),
-    # currency=<detected code>).
-    raise NotImplementedError("TODO US-02: implement currency normalization")
+    currency = _detect_currency(raw)
+    numeric = re.sub(r"[^0-9.,]", "", raw)
 
+    if not numeric:
+        raise CurrencyParseError(raw)
+
+    return Money(
+        amount=_parse_amount(numeric, raw),
+        currency=currency,
+    )
 
 def normalize_timestamp(raw: object) -> str:
     """Convert a Unix epoch (int / float / numeric string) to an ISO-8601 UTC string.
 
     Already-ISO-8601 input is returned unchanged (so the hook is idempotent).
     """
-    # TODO: Reject bool explicitly (it is an int subclass). For int/float, return
-    # datetime.fromtimestamp(float(raw), UTC).isoformat(). For a str: if it is all digits, treat
-    # it as an epoch; otherwise validate it parses as ISO-8601 (datetime.fromisoformat) and
-    # return it unchanged. Anything else raises TimestampParseError(raw).
-    raise NotImplementedError("TODO US-02: implement timestamp normalization")
+    if isinstance(raw, bool):
+        raise TimestampParseError(raw)
 
+    if isinstance(raw, (int, float)):
+        try:
+            return datetime.fromtimestamp(float(raw), UTC).isoformat()
+        except (ValueError, OverflowError, OSError) as exc:
+            raise TimestampParseError(raw) from exc
+
+    if isinstance(raw, str):
+        if raw.isdigit():
+            try:
+                return datetime.fromtimestamp(float(raw), UTC).isoformat()
+            except (ValueError, OverflowError, OSError) as exc:
+                raise TimestampParseError(raw) from exc
+
+        try:
+            datetime.fromisoformat(raw)
+        except ValueError as exc:
+            raise TimestampParseError(raw) from exc
+
+        return raw
+
+    raise TimestampParseError(raw)
 
 def coerce_money(value: object) -> Money:
     """Coerce a tool-input amount (number, currency string, or Money dict) to exact :class:`Money`.
@@ -118,7 +156,24 @@ def normalize_status(raw: object) -> str:
 
     String labels already in the canonical vocabulary are returned unchanged (idempotent).
     """
-    # TODO: If raw is already a canonical label string (in _STATUS_LABELS.values()),
-    # return it unchanged. Reject bool. Convert numeric-string codes to int, look the code up in
-    # _STATUS_LABELS, and return the label. Raise StatusCodeError(raw) on any unknown code.
-    raise NotImplementedError("TODO US-02: implement status normalization")
+    if isinstance(raw, str):
+        if raw in _STATUS_LABELS.values():
+            return raw
+
+        if raw.isdigit():
+            code = int(raw)
+        else:
+            raise StatusCodeError(raw)
+    elif isinstance(raw, bool):
+        raise StatusCodeError(raw)
+    elif isinstance(raw, (int, float)):
+        if isinstance(raw, float) and not raw.is_integer():
+            raise StatusCodeError(raw)
+        code = int(raw)
+    else:
+        raise StatusCodeError(raw)
+
+    try:
+        return _STATUS_LABELS[code]
+    except KeyError as exc:
+        raise StatusCodeError(raw) from exc
