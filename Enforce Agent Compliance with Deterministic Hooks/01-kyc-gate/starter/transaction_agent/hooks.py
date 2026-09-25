@@ -20,9 +20,12 @@ def kyc_prerequisite_hook(call: ToolCall, state: SessionState) -> HookDecision:
     The canonical prerequisite is "a tool returned a verified customer ID"; the engine records
     that id on a successful ``verify_kyc`` and this hook gates on its presence.
     """
-    # TODO: If call.name is one of MONEY_MOVEMENT_TOOLS, look up the call's
-    # customer_id (call.input.get("customer_id")). If that id is NOT in
-    # state.verified_customers, return HookDecision.deny(...) with a reason that mentions KYC
-    # and names the customer and tool. Otherwise (non-money tool, or KYC already recorded),
-    # return HookDecision.allow().
-    raise NotImplementedError("TODO US-01: implement the KYC prerequisite gate")
+       if call.name in MONEY_MOVEMENT_TOOLS:
+        customer_id = call.input.get("customer_id")
+
+        if customer_id not in state.verified_customers:
+            return HookDecision.deny(
+                f"KYC required for customer {customer_id} before {call.name}"
+            )
+
+    return HookDecision.allow()
