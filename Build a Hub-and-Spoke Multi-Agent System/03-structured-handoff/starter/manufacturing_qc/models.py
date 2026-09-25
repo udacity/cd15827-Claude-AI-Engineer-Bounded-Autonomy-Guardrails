@@ -78,7 +78,23 @@ class Cause(BaseModel):
 #   - The refinement token "refinement" (used by the refinement loop later)
 # The allowlist is intentionally permissive (substring match, not exact equality), because
 # the model returns evidence strings like "defect_type=SOLDER-BRIDGE" rather than bare names.
-_ALLOWED_EVIDENCE_FIELDS: frozenset[str] = frozenset()
+_ALLOWED_EVIDENCE_FIELDS: frozenset[str] = frozenset(
+    {
+        "defect_classification",
+        "supplier_findings",
+        "defect_type",
+        "severity",
+        "description_summary",
+        "component_records",
+        "supplier_incident_summary",
+        "component_id",
+        "supplier",
+        "lot_id",
+        "received_at",
+        "prior_incidents",
+        "refinement",
+    }
+)
 
 
 class RootCauseHypothesis(BaseModel):
@@ -88,15 +104,18 @@ class RootCauseHypothesis(BaseModel):
 
     ranked_causes: list[Cause] = Field(min_length=1)
 
-    # TODO: Implement a Pydantic model_validator(mode="after") named
-    # `_evidence_must_reference_known_fields` that iterates over every Cause in
-    # ranked_causes and every entry in cause.cited_evidence. If an entry contains
-    # NONE of the tokens in _ALLOWED_EVIDENCE_FIELDS as a substring, raise a
-    # ValueError naming which cause's evidence is rejected.
-    #
-    # (Friction note: a model_validator(mode="after") method MUST return `self` at the
-    # end. If you forget, the validator silently runs but its checks won't surface as
-    # expected, and frozen=True hides the misbehavior even more.)
+        @model_validator(mode="after")
+    def _evidence_must_reference_known_fields(self) -> RootCauseHypothesis:
+        for cause_index, cause in enumerate(self.ranked_causes):
+            for evidence in cause.cited_evidence:
+                if not any(
+                    field in evidence for field in _ALLOWED_EVIDENCE_FIELDS
+                ):
+                    raise ValueError(
+                        f"cause {cause_index} has evidence referencing an unknown "
+                        f"field: {evidence}"
+                    )
+        return self
 
 
 class SubagentReport(BaseModel):
