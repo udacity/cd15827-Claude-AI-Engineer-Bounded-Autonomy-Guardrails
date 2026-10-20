@@ -55,7 +55,8 @@ def _normalize_status_value(value: Any) -> Any:
     # TODO: Normalize ONLY numeric status codes; pass strings through. Watch the
     # sharp edge: get_customer returns a numeric status (1/2/3), but initiate_transfer returns
     # status="executed". A hook that maps every status key crashes on "executed". So: leave bool
-    # untouched; for an int (or an all-digits string) call normalize_status(value); otherwise
+    # untouched (bool is a subclass of int, so check it first, or True is read as a numeric
+    # code); for an int (or an all-digits string) call normalize_status(value); otherwise
     # (an already-canonical label or a non-code string like "executed") return value unchanged.
     raise NotImplementedError("TODO US-02: normalize a status field value")
 

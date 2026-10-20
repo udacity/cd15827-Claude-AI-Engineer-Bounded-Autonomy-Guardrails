@@ -5,7 +5,8 @@
 A hook engine that enforces a **programmatic** compliance prerequisite: no money-movement tool
 (`initiate_transfer`, `adjust_balance`, `resolve_dispute`) may run for a customer until
 `verify_kyc` has succeeded for that customer. The guarantee comes from code in the engine, not
-from a sentence in a prompt.
+from a sentence in a prompt. KYC ("Know Your Customer") is the check a bank runs to confirm a
+customer's identity; here `verify_kyc` performs it.
 
 ## TODO locations
 

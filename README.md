@@ -49,7 +49,7 @@ scoped subagents and refines the result. Built over four steps:
 A simulated banking transaction agent (`transaction_agent`) whose compliance guarantees live in
 a hook engine — in code, not in the prompt. Built over three steps:
 
-1. **[01-kyc-gate](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/01-kyc-gate/)** — A `PreToolUse` hook that blocks every money-movement tool until KYC has succeeded for that customer; the denied tool is proven to never execute.
+1. **[01-kyc-gate](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/01-kyc-gate/)** — A `PreToolUse` hook that blocks every money-movement tool until KYC (Know Your Customer identity verification) has succeeded for that customer; the denied tool is proven to never execute.
 2. **[02-normalization](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/02-normalization/)** — A `PostToolUse` hook that canonicalizes messy tool output (locale-aware currency → `Decimal`, epoch → ISO-8601 UTC, status codes → labels) before the model reads it.
 3. **[03-interception-handoff](Enforce%20Agent%20Compliance%20with%20Deterministic%20Hooks/03-interception-handoff/)** — Intercept and redirect risky transfers to a compliance queue, produce a self-contained handoff summary, and run a harness proving deterministic enforcement beats even a maximal prompt.
 

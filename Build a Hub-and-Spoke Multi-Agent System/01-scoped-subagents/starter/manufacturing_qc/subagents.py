@@ -50,8 +50,8 @@ DEFECT_CLASSIFIER = SubagentDefinition(
     # DefectClassification using BrightCircuit's taxonomy and a severity in
     # {low, medium, high, critical}) and the structured-output contract using the
     # exact phrase "return JSON conforming to DefectClassification". Do not write
-    # procedural steps ("First, ... Then, ..."). Do not mention components or the
-    # supplier subagent's scope.
+    # procedural steps ("First, ... Then, ..."). Do not mention components (that is the
+    # supplier subagent's scope).
     system_prompt="",
     # TODO: This subagent needs no external tools (only its schema-bound emit tool,
     # which the runner adds automatically). Leave the tuple empty.
