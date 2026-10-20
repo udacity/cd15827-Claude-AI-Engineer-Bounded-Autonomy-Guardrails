@@ -84,7 +84,7 @@ def normalization_hook(
 
 
 def score_risk_flags(tool_input: dict[str, Any], customer: dict[str, Any]) -> list[str]:
-    """A cheap, deterministic risk heuristic — the "$1 guardrail" feeding the compliance layer.
+    """A cheap, deterministic risk heuristic: a few fixed rules feeding the compliance layer.
 
     No trained model: a handful of rules that surface the flags a reviewer needs. The list is
     open/extensible, so escalation is multi-trigger rather than a single hardcoded condition.
