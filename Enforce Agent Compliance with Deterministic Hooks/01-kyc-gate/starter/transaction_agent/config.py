@@ -7,8 +7,8 @@ from pathlib import Path
 
 DEFAULT_MODEL = "claude-haiku-4-5-20251001"
 
-# $10,000 is this project's instantiation of the exam's generic "amount exceeds a threshold"
-# interception (Task 1.5 S2). Wire transfers strictly above this are redirected to compliance.
+# $10,000 is this project's threshold for the "amount exceeds a threshold" interception.
+# Wire transfers strictly above this are redirected to compliance.
 TRANSFER_THRESHOLD = Decimal("10000")
 THRESHOLD_CURRENCY = "USD"
 
