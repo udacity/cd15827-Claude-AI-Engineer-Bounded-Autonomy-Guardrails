@@ -26,7 +26,7 @@ _STATUS_KEYS = frozenset({"status", "status_code"})
 def kyc_prerequisite_hook(call: ToolCall, state: SessionState) -> HookDecision:
     """Block money-movement tools until ``verify_kyc`` has recorded a verified id for the customer.
 
-    The exam's canonical prerequisite is "a tool returned a verified customer ID"; the engine
+    The prerequisite is "a tool returned a verified customer ID"; the engine
     records that id on a successful ``verify_kyc`` and this hook gates on its presence.
     """
     if call.name in MONEY_MOVEMENT_TOOLS:

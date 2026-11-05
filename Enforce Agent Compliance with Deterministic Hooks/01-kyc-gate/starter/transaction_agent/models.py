@@ -64,7 +64,7 @@ class HookDecision(BaseModel):
 class ToolResult(BaseModel):
     """The result fed back to the model after a tool call resolves.
 
-    Blocked calls (deny/redirect) carry the exam's structured-error taxonomy so the model
+    Blocked calls (deny/redirect) carry a structured error category so the model
     treats them as terminal business errors rather than retrying or claiming success.
     """
 
